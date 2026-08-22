@@ -13,13 +13,20 @@ Let $B$ be the set of all binary digits:
 
 Let $B_n$ be the set of all $n$-bit binary numbers:
 
-\[ B_n = \{ (b_1, b_2, \dots, b_n) \mid b_i \in B \} \]
+\[ B_n = \{ (b_0, b_1, \dots, b_{n-1}) \mid b_i \in B \} \]
 
-Let $x || y$ represent concatenation of $x \in B_m$ and $y \in B_n$:
+Let $x_n \in B_n$ be the $n$-bit binary number representing $x \in \mathbb{W}$:
 
 \begin{align*}
-&|| : B_m, B_n \to B_{m+n} \\
-& (x_1, x_2, \dots, x_m) || (y_1, y_2, \dots, y_n) = (x_1, x_2, \dots, x_m, y_1, y_2, \dots, y_n)
+&x_n = (b_0, b_1, \dots, b_{n-1}) \\
+&b_i = \left\lfloor \frac{x}{2^i} \right\rfloor \pmod 2
+\end{align*}
+
+Let $x \mathbin{\|} y$ represent concatenation of $x \in B_m$ and $y \in B_n$:
+
+\begin{align*}
+&\mathbin{\|} : B_m, B_n \to B_{m+n} \\
+&(x_0, x_1, \dots, x_{m-1}) \mathbin{\|} (y_0, y_1, \dots, y_{n-1}) = (x_0, x_1, \dots, x_{m-1}, y_0, y_1, \dots, y_{n-1})
 \end{align*}
 
 \subsection{Logic Gates}
@@ -32,73 +39,100 @@ Let $\neg x$ be the inverse of $x \in B$:
 &\neg 1 = 0
 \end{align*}
 
-Let $\neg_n x$ be the inverse of $x \in B_n$:
+Let $\neg x$ be the inverse of $x \in B_n$:
 
 \begin{align*}
-&\neg_n : B_n \to B_n \\
-&\neg_n (x_1, x_2, \dots, x_n) = (\neg x_1, \neg x_2, \dots, \neg x_n)
+&\neg : B_n \to B_n \\
+&\neg (x_0, x_1, \dots, x_{n-1}) = (\neg x_0, \neg x_1, \dots, \neg x_{n-1})
 \end{align*}
 
 Let $x \land y$ be the binary and of $x,y \in B$:
 
 \begin{align*}
-&\land : B, B \to B \\
+&\land : B \times B \to B \\
 &0 \land 0 = 0 \\
 &0 \land 1 = 0 \\
 &1 \land 0 = 0 \\
 &1 \land 1 = 1
 \end{align*}
 
-Let $x \land_n y$ be the binary and of $x,y \in B_n$:
+Let $x \land y$ be the binary and of $x,y \in B_n$:
 
 \begin{align*}
-&\land_n : B_n, B_n \to B_n \\
-&(x_1, x_2, \dots, x_n) \land_n (y_1, y_2, \dots, y_n) = (x_1 \land y_1, x_2 \land y_2, \dots, x_n \land y_n)
+&\land : B_n \times B_n \to B_n \\
+&(x_0, x_1, \dots, x_{n-1}) \land (y_0, y_1, \dots, y_{n-1}) = (x_0 \land y_0, x_1 \land y_1, \dots, x_{n-1} \land y_{n-1})
 \end{align*}
 
 Let $x \lor y$ be the binary or of $x,y \in B$:
 
 \begin{align*}
-&\lor : B, B \to B \\
+&\lor : B \times B \to B \\
 &0 \lor 0 = 0 \\
 &0 \lor 1 = 1 \\
 &1 \lor 0 = 1 \\
 &1 \lor 1 = 1
 \end{align*}
 
-Let $x \lor_n y$ be the binary or of $x,y \in B_n$:
+Let $x \lor y$ be the binary or of $x,y \in B_n$:
 
 \begin{align*}
-&\lor_n : B_n, B_n \to B_n \\
-&(x_1, x_2, \dots, x_n) \lor_n (y_1, y_2, \dots, y_n) = (x_1 \lor y_1, x_2 \lor y_2, \dots, x_n \lor y_n)
+&\lor : B_n \times B_n \to B_n \\
+&(x_0, x_1, \dots, x_{n-1}) \lor (y_0, y_1, \dots, y_{n-1}) = (x_0 \lor y_0, x_1 \lor y_1, \dots, x_{n-1} \lor y_{n-1})
 \end{align*}
 
 Let $x \oplus y$ be the binary xor of $x,y \in B$:
 
 \begin{align*}
-&\oplus : B, B \to B \\
+&\oplus : B \times B \to B \\
 &0 \oplus 0 = 0 \\
 &0 \oplus 1 = 1 \\
 &1 \oplus 0 = 1 \\
 &1 \oplus 1 = 0
 \end{align*}
 
-Let $x \oplus_n y$ be the binary xor of $x,y \in B_n$:
+Let $x \oplus y$ be the binary xor of $x,y \in B_n$:
 
 \begin{align*}
-&\oplus_n : B_n, B_n \to B_n \\
-&(x_1, x_2, \dots, x_n) \oplus_n (y_1, y_2, \dots, y_n) = (x_1 \oplus y_1, x_2 \oplus y_2, \dots, x_n \oplus y_n)
+&\oplus : B_n \times B_n \to B_n \\
+&(x_0, x_1, \dots, x_{n-1}) \oplus (y_0, y_1, \dots, y_{n-1}) = (x_0 \oplus y_0, x_1 \oplus y_1, \dots, x_{n-1} \oplus y_{n-1})
+\end{align*}
+
+Let $x \mathbin{<<} y$ be the binary left shift of $x,y \in B_n$:
+
+\begin{align*}
+\mathbin{<<} &: B_n \times B_n \to B_n \\
+x \mathbin{<<} 0_n &= x \\
+(b_0, b_1, \dots, b_{n-1}) \mathbin{<<} 1_n &= (0, b_0, b_1, \dots, b_{n-2}) \\
+x \mathbin{<<} (y+1)_n &= (x \mathbin{<<} y) \mathbin{<<} 1_n
+\end{align*}
+
+Let $x \mathbin{>>} y$ be the signed binary right shift of $x,y \in B_n$:
+
+\begin{align*}
+\mathbin{>>} &: B_n \times B_n \to B_n \\
+x \mathbin{>>} 0_n &= x \\
+(b_0, b_1, \dots, b_{n-1}) \mathbin{>>} 1_n &= (b_1, b_2, \dots, b_{n-1}, b_{n-1}) \\
+x \mathbin{>>} (y+1)_n &= (x \mathbin{>>} y) \mathbin{>>} 1_n
+\end{align*}
+
+Let $x \mathbin{>>>} y$ be the unsigned binary right shift of $x,y \in B_n$:
+
+\begin{align*}
+\mathbin{>>>} &: B_n \times B_n \to B_n \\
+x \mathbin{>>>} 0_n &= x \\
+(b_0, b_1, \dots, b_{n-1}) \mathbin{>>>} 1_n &= (b_1, b_2, \dots, b{n-1}, 0) \\
+x \mathbin{>>>} (y+1)_n &= (x \mathbin{>>>} y) \mathbin{>>>} 1_n
 \end{align*}
 
 \subsection{Arithmetic}
 
-Let $x +_n y$ be the addition of $x,y \in B_n$:
+Let $x + y$ be the addition of $x,y \in B_n$:
 
 \begin{align*}
-&+_n : B_n, B_n \to B_n \\
-&(x_1, x_2, \dots, x_n) +_n (y_1, y_2, \dots, y_n) = (r_1, r_2, \dots r_n) \\
-&r_1 = x_1 \oplus y_1 \\
-&c_1 = x_1 \land y_1 \\
+&+ : B_n \times B_n \to B_n \\
+&(x_0, x_1, \dots, x_{n-1}) + (y_0, y_1, \dots, y_{n-1}) = (r_0, r_1, \dots r_{n-1}) \\
+&r_0 = x_0 \oplus y_0 \\
+&c_0 = x_0 \land y_0 \\
 &r_{i+1} = x_{i+1} \oplus y_{i+1} \oplus c_i \\
 &c_{i+1} = (x_{i+1} \land y_{i+1}) \lor (c_i \land (x_{i+1} \oplus y_{i+1}))
 \end{align*}
@@ -119,8 +153,8 @@ State $s_{n+1}$ = $q(s_n)$:
 
 \begin{align*}
 &q : \Sigma \to \Sigma \\
-&q((m_1, m_2, \dots, m_{2^{32}-1}), (r_1, r_2, \dots, r_{15}))
-= ((m'_1, m'_2, \dots, m'_{2^{32}-1}), (r'_1, r'_2, \dots, r'_{15}))
+&q((m_0, m_1, \dots, m_{2^{32}-1}), (r_0, r_1, \dots, r_{15}))
+= ((m'_0, m'_1, \dots, m'_{2^{32}-1}), (r'_0, r'_1, \dots, r'_{15}))
 \end{align*}
 
 \end{document}
