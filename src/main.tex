@@ -15,6 +15,13 @@ Let $B_n$ be the set of all $n$-bit binary numbers:
 
 \[ B_n = \{ (b_1, b_2, \dots, b_n) \mid b_i \in B \} \]
 
+Let $x || y$ represent concatenation of $x \in B_m$ and $y \in B_n$:
+
+\begin{align*}
+&|| : B_m, B_n \to B_{m+n} \\
+& (x_1, x_2, \dots, x_m) || (y_1, y_2, \dots, y_n) = (x_1, x_2, \dots, x_m, y_1, y_2, \dots, y_n)
+\end{align*}
+
 \subsection{Logic Gates}
 
 Let $\neg x$ be the inverse of $x \in B$:
@@ -66,7 +73,7 @@ Let $x \lor_n y$ be the binary or of $x,y \in B_n$:
 &(x_1, x_2, \dots, x_n) \lor_n (y_1, y_2, \dots, y_n) = (x_1 \lor y_1, x_2 \lor y_2, \dots, x_n \lor y_n)
 \end{align*}
 
-Let $x \oplus y$ be the binary xor of f$x,y \in B$:
+Let $x \oplus y$ be the binary xor of $x,y \in B$:
 
 \begin{align*}
 &\oplus : B, B \to B \\
@@ -79,10 +86,41 @@ Let $x \oplus y$ be the binary xor of f$x,y \in B$:
 Let $x \oplus_n y$ be the binary xor of $x,y \in B_n$:
 
 \begin{align*}
-&\oplus : B_n, B_n \to B_n \\
-&(x_1, x_2, \dots, x_n) \oplus_n (y_1, y_2, \dots, y_n) = (x_1 \oplus_n y_1, x_2 \oplus_n y_2, \dots, x_n \oplus_n y_n)
+&\oplus_n : B_n, B_n \to B_n \\
+&(x_1, x_2, \dots, x_n) \oplus_n (y_1, y_2, \dots, y_n) = (x_1 \oplus y_1, x_2 \oplus y_2, \dots, x_n \oplus y_n)
 \end{align*}
 
 \subsection{Arithmetic}
+
+Let $x +_n y$ be the addition of $x,y \in B_n$:
+
+\begin{align*}
+&+_n : B_n, B_n \to B_n \\
+&(x_1, x_2, \dots, x_n) +_n (y_1, y_2, \dots, y_n) = (r_1, r_2, \dots r_n) \\
+&r_1 = x_1 \oplus y_1 \\
+&c_1 = x_1 \land y_1 \\
+&r_{i+1} = x_{i+1} \oplus y_{i+1} \oplus c_i \\
+&c_{i+1} = (x_{i+1} \land y_{i+1}) \lor (c_i \land (x_{i+1} \oplus y_{i+1}))
+\end{align*}
+
+\section{State}
+
+Let the set of all CPU states be $\Sigma$:
+
+\begin{align*}
+&M = \{(m_0, m_1, \dots, m_{2^{32}-1}) \mid m_i \in B_8\} \\
+&R = \{(r_0, r_1, \dots, r_{15}) \mid r_i \in B_{32}\} \\
+&\Sigma = M \times R
+\end{align*}
+
+The CPU state is represented by a tuple $(m \in M, r \in R)$
+
+State $s_{n+1}$ = $q(s_n)$:
+
+\begin{align*}
+&q : \Sigma \to \Sigma \\
+&q((m_1, m_2, \dots, m_{2^{32}-1}), (r_1, r_2, \dots, r_{15}))
+= ((m'_1, m'_2, \dots, m'_{2^{32}-1}), (r'_1, r'_2, \dots, r'_{15}))
+\end{align*}
 
 \end{document}
