@@ -1,0 +1,88 @@
+\documentclass[fleqn]{article}
+\usepackage{amsmath,amssymb,parskip}
+
+\begin{document}
+
+\section{Definitions}
+
+\subsection{Binary}
+
+Let $B$ be the set of all binary digits:
+
+\[ B = \{0, 1\} \]
+
+Let $B_n$ be the set of all $n$-bit binary numbers:
+
+\[ B_n = \{ (b_1, b_2, \dots, b_n) \mid b_i \in B \} \]
+
+\subsection{Logic Gates}
+
+Let $\neg x$ be the inverse of $x \in B$:
+
+\begin{align*}
+&\neg : B \to  B \\
+&\neg 0 = 1 \\
+&\neg 1 = 0
+\end{align*}
+
+Let $\neg_n x$ be the inverse of $x \in B_n$:
+
+\begin{align*}
+&\neg_n : B_n \to B_n \\
+&\neg_n (x_1, x_2, \dots, x_n) = (\neg x_1, \neg x_2, \dots, \neg x_n)
+\end{align*}
+
+Let $x \land y$ be the binary and of $x,y \in B$:
+
+\begin{align*}
+&\land : B, B \to B \\
+&0 \land 0 = 0 \\
+&0 \land 1 = 0 \\
+&1 \land 0 = 0 \\
+&1 \land 1 = 1
+\end{align*}
+
+Let $x \land_n y$ be the binary and of $x,y \in B_n$:
+
+\begin{align*}
+&\land_n : B_n, B_n \to B_n \\
+&(x_1, x_2, \dots, x_n) \land_n (y_1, y_2, \dots, y_n) = (x_1 \land y_1, x_2 \land y_2, \dots, x_n \land y_n)
+\end{align*}
+
+Let $x \lor y$ be the binary or of $x,y \in B$:
+
+\begin{align*}
+&\lor : B, B \to B \\
+&0 \lor 0 = 0 \\
+&0 \lor 1 = 1 \\
+&1 \lor 0 = 1 \\
+&1 \lor 1 = 1
+\end{align*}
+
+Let $x \lor_n y$ be the binary or of $x,y \in B_n$:
+
+\begin{align*}
+&\lor_n : B_n, B_n \to B_n \\
+&(x_1, x_2, \dots, x_n) \lor_n (y_1, y_2, \dots, y_n) = (x_1 \lor y_1, x_2 \lor y_2, \dots, x_n \lor y_n)
+\end{align*}
+
+Let $x \oplus y$ be the binary xor of f$x,y \in B$:
+
+\begin{align*}
+&\oplus : B, B \to B \\
+&0 \oplus 0 = 0 \\
+&0 \oplus 1 = 1 \\
+&1 \oplus 0 = 1 \\
+&1 \oplus 1 = 0
+\end{align*}
+
+Let $x \oplus_n y$ be the binary xor of $x,y \in B_n$:
+
+\begin{align*}
+&\oplus : B_n, B_n \to B_n \\
+&(x_1, x_2, \dots, x_n) \oplus_n (y_1, y_2, \dots, y_n) = (x_1 \oplus_n y_1, x_2 \oplus_n y_2, \dots, x_n \oplus_n y_n)
+\end{align*}
+
+\subsection{Arithmetic}
+
+\end{document}

@@ -1,1 +1,1 @@
-pdflatex -output-directory=build ISA.tex 
+pdflatex -output-directory=build src/main.tex 
