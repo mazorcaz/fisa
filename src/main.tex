@@ -129,12 +129,20 @@ x \mathbin{>>>} (y+1)_n &= (x \mathbin{>>>} y) \mathbin{>>>} 1_n
 Let $x + y$ be the addition of $x,y \in B_n$:
 
 \begin{align*}
-&+ : B_n \times B_n \to B_n \\
-&(x_0, x_1, \dots, x_{n-1}) + (y_0, y_1, \dots, y_{n-1}) = (r_0, r_1, \dots r_{n-1}) \\
-&r_0 = x_0 \oplus y_0 \\
-&c_0 = x_0 \land y_0 \\
-&r_{i+1} = x_{i+1} \oplus y_{i+1} \oplus c_i \\
-&c_{i+1} = (x_{i+1} \land y_{i+1}) \lor (c_i \land (x_{i+1} \oplus y_{i+1}))
++ &: B_n \times B_n \to B_n \\
+(x_0, x_1, \dots, x_{n-1}) + (y_0, y_1, \dots, y_{n-1}) &= (r_0, r_1, \dots r_{n-1}) \\
+r_0 &= x_0 \oplus y_0 \\
+c_0 &= x_0 \land y_0 \\
+r_{i+1} &= x_{i+1} \oplus y_{i+1} \oplus c_i \\
+c_{i+1} &= (x_{i+1} \land y_{i+1}) \lor (c_i \land (x_{i+1} \oplus y_{i+1}))
+\end{align*}
+
+Let $x \cdot y$ be the multiplication of $x,y \in B_n$:
+
+\begin{align*}
+\cdot &: B_n \times B_n \to B_n \\
+x \cdot 0_n &= 0_n \\
+x \cdot (y+1)_n &= (x \cdot y) + x
 \end{align*}
 
 \section{State}
